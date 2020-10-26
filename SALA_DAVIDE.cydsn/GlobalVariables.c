@@ -17,6 +17,6 @@ uint8_t flag_PWM_ON = 0;
 int32 value = 0;
 
 void Set_BULB(){
-    PWM_WriteCompare(value); // da controllare
+    PWM_WriteCompare(value); //value sampled by the POTENTIOMETER is used to set the duty cycle of the PWM to change the intensity of the BULB
 }
 /* [] END OF FILE */
