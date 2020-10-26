@@ -13,10 +13,8 @@
 #include "BulbSettings.h"
 #include "PWM.h"
 
-void Set_BULB(int32 dc){
-    PWM_Start();
-    dc = (dc*255)/65535;
-    PWM_WriteCompare(dc);
+void Set_BULB(){
+    PWM_WriteCompare(DC_PWM);
 }
 
 /* [] END OF FILE */

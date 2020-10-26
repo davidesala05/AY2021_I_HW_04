@@ -14,7 +14,7 @@
 #include "UART.h"
 #include "Timer.h"
 #include "LED_UART.h"
-
+#include "ADC_DelSig.h"
 
 CY_ISR(Custom_UART_RX_ISR) {
     
@@ -26,16 +26,12 @@ CY_ISR(Custom_UART_RX_ISR) {
             
             case 'B':
             case 'b':
-                Timer_Start();
-                LED_UART_Write(HIGH);
-                state = START;
+                state = ON;
                 break;
             
             case 'S':
             case 's':
-                Timer_Stop();
-                LED_UART_Write(LOW);
-                state = STOP;
+                state = OFF;
                 break;
             
             default:

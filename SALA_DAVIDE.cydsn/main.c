@@ -17,49 +17,65 @@
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
-    ADC_DelSig_Start();
+    
     UART_Start();
   
     isr_ADC_StartEx(Custom_ADC_ISR);
     isr_UART_StartEx(Custom_UART_RX_ISR);
     
     Data[0] = HEADER;
-    Data[5] = TAIL;
+    Data[TRANSMIT_SIZE-1] = TAIL;
     
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
 
     for(;;)
     {
-        /* Place your application code here. */
         
         switch (state){
         
+            case ON :
+                LED_UART_Write(HIGH);
+                Timer_Start();
+                ADC_DelSig_Start();
+                UART_PutString("System powered ON\r\n");
+                state = IDLE;
+                break;
+                
+            case OFF :
+                LED_UART_Write(LOW);
+                UART_Init();
+                PWM_Stop();
+                Timer_Stop();
+                ADC_DelSig_Stop();
+                UART_PutString("System powered OFF\r\n");
+                state = IDLE;
+                break;
+                
             case DARK :
-                Set_BULB(value_pot);
+                UART_PutString("Bulb powered ON\r\n");
+                PWM_Start();
+                state = IDLE;
                 break;
             
             case LIGHT :
-                UART_PutString("Buld powered ON\r\n");
+                UART_PutString("Bulb powered OFF\r\n");
                 PWM_Stop();
+                state = IDLE;
                 break;
+                
             case ERROR :
                 UART_PutString("ERROR in the transmission, character is unknown\r\n");
                 UART_Init();
                 state = IDLE;
                 break;
-            
-            case STOP :
-                UART_PutString("Bulb powered OFF\r\n");
-                UART_Init();
-                PWM_Stop();
-                state = IDLE;
-                break;
-
+                
         }
         
         if(flag_send){
             UART_PutArray(Data, TRANSMIT_SIZE);
             flag_send = 0;
+        }
+        if(flag_dark){
+            Set_BULB();
         }
     }
 }

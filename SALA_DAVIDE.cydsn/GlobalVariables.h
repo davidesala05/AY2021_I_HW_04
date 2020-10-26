@@ -13,10 +13,10 @@
 #include "cytypes.h"
 
 #define IDLE 0
-#define START 1
+#define ON 1
 #define DARK 2
 #define LIGHT 3
-#define STOP 4
+#define OFF 4
 #define ERROR 5
 
 #define HIGH 1
@@ -25,14 +25,16 @@
 #define HEADER 0xA0
 #define TAIL 0xC0
 
-#define THRESHOLD_LIGHT 3000
+#define THRESHOLD_LIGHT 30000
 
-extern int8_t ch_received;
-extern int8_t state;
+extern uint8_t ch_received;
+extern uint8_t state;
 extern int32 value_photo;
 extern int32 value_pot;
-extern int8_t flag_send;
-extern int8_t flag_change_status;
+extern uint8_t DC_PWM;
+extern uint8_t flag_send;
+extern uint8_t flag_dark;
+extern uint8_t flag_PWM_ON;
 
 
 /* [] END OF FILE */
