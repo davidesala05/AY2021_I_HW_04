@@ -10,14 +10,22 @@
  * ========================================
 */
 
-#ifndef __INTERRUPT_ROUTINES_UART_H
+#ifndef __INTERRUPT_ROUTINES_ADC_H
     
-    #define __INTERRUPT_ROUTINES_UART_H
+    #define __INTERRUPT_ROUTINES_ADC_H
     
     #include "cytypes.h"
     #include "GlobalVariables.h"
     
-    CY_ISR_PROTO(Custom_UART_RX_ISR);
+    #define PHOTO_CHANNEL 0
+    #define POT_CHANNEL 1
+    
+    #define BYTE_TO_SEND 4
+    #define TRANSMIT_SIZE 1+BYTE_TO_SEND+1
+    
+    uint8_t Data[TRANSMIT_SIZE];
+    
+    CY_ISR_PROTO(Custom_ADC_ISR);
     
 #endif
 

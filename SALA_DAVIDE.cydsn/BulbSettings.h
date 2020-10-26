@@ -10,13 +10,15 @@
  * ========================================
 */
 
-#ifndef __INTERRUPT_ROUTINES_TIMER_H
-    #define __INTERRUPT_ROUTINES_TIMER_H
+#ifndef __BULB_SETTINGS_H
+    
+    #define __BULB_SETTINGS_H
     
     #include "cytypes.h"
     #include "GlobalVariables.h"
     
-    CY_ISR_PROTO(Custom_TIMER_ISR);
+    void Set_BULB (int32 dc);
+    
 #endif
 
 /* [] END OF FILE */

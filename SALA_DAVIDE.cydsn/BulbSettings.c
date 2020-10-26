@@ -10,13 +10,13 @@
  * ========================================
 */
 
-#include "InterruptRoutines_TIMER.h"
-#include "Timer.h"
+#include "BulbSettings.h"
+#include "PWM.h"
 
-
-CY_ISR(Custom_TIMER_ISR) {
-    
-    
+void Set_BULB(int32 dc){
+    PWM_Start();
+    dc = (dc*255)/65535;
+    PWM_WriteCompare(dc);
 }
 
 /* [] END OF FILE */
