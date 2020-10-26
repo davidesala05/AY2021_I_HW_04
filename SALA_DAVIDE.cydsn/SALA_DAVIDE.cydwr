@@ -252,9 +252,10 @@
   <Group key="DWRInstGuidMapping">
     <Group key="Pin">
       <Data key="8baddb6c-0e17-47ff-b090-eb48cdeccf1b" value="PHOTO" />
+      <Data key="4751b35e-87e1-4c58-802d-58a69b7886c3" value="LED" />
       <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="Rx" />
       <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="POT" />
-      <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="LED" />
+      <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="BULB" />
       <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="Tx" />
     </Group>
   </Group>
@@ -3345,6 +3346,11 @@
     <Group key="8baddb6c-0e17-47ff-b090-eb48cdeccf1b">
       <Group key="0">
         <Data key="Port Format" value="2,6" />
+      </Group>
+    </Group>
+    <Group key="4751b35e-87e1-4c58-802d-58a69b7886c3">
+      <Group key="0">
+        <Data key="Port Format" value="2,1" />
       </Group>
     </Group>
     <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">

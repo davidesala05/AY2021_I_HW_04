@@ -13,7 +13,7 @@
 #include "InterruptRoutines_UART.h"
 #include "UART.h"
 #include "Timer.h"
-#include "LED.h"
+#include "LED_UART.h"
 
 
 CY_ISR(Custom_UART_RX_ISR) {
@@ -27,18 +27,19 @@ CY_ISR(Custom_UART_RX_ISR) {
             case 'B':
             case 'b':
                 Timer_Start();
-                LED_Write(HIGH);
+                LED_UART_Write(HIGH);
                 state = START;
                 break;
             
             case 'S':
             case 's':
                 Timer_Stop();
-                LED_Write(LOW);
-                state = IDLE;
+                LED_UART_Write(LOW);
+                state = STOP;
                 break;
             
             default:
+                state = ERROR;
                 break;
         }
     } 

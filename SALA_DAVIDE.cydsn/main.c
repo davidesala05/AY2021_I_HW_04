@@ -37,11 +37,24 @@ int main(void)
             case DARK :
                 Set_BULB(value_pot);
                 break;
-                
+            
             case LIGHT :
+                UART_PutString("Buld powered ON\r\n");
                 PWM_Stop();
                 break;
+            case ERROR :
+                UART_PutString("ERROR in the transmission, character is unknown\r\n");
+                UART_Init();
+                state = IDLE;
+                break;
             
+            case STOP :
+                UART_PutString("Bulb powered OFF\r\n");
+                UART_Init();
+                PWM_Stop();
+                state = IDLE;
+                break;
+
         }
         
         if(flag_send){

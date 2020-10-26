@@ -17,6 +17,7 @@ int8_t state = IDLE;
 int32 value_photo = 0;
 int32 value_pot = 0;
 int8_t flag_send = 0;
+int8_t flag_change_status = 0;
 
 
 /* [] END OF FILE */
