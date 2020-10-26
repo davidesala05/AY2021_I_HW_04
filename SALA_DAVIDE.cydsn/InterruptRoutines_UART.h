@@ -1,12 +1,8 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
+ * This is the header file of the interrupt of the UART
+ * The UART isr is called every time a character is send on the serial port
+ * 
  * ========================================
 */
 
@@ -16,6 +12,7 @@
     
     #include "cytypes.h"
     #include "GlobalVariables.h"
+    #include "UART.h"
     
     CY_ISR_PROTO(Custom_UART_RX_ISR);
     

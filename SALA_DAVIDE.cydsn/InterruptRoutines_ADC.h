@@ -1,12 +1,9 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
+ * This is the header file of the interrupt of the TIMER
+ * The TIMER isr is called every 100 milliseconds
+ * This isr is used to sample both the channels sequentially
+ * 
  * ========================================
 */
 
@@ -16,14 +13,17 @@
     
     #include "cytypes.h"
     #include "GlobalVariables.h"
+    #include "Timer.h"
+    #include "ADC_DelSig.h"
+    #include "AMux.h"
     
-    #define PHOTO_CHANNEL 0
-    #define POT_CHANNEL 1
+    #define PHOTO_CHANNEL 0 //Channel of the photoresistor used by the MUX
+    #define POT_CHANNEL 1 //Channel of the potentiometer used by the MUX
     
-    #define BYTE_TO_SEND 4
-    #define TRANSMIT_SIZE 1+BYTE_TO_SEND+1
+    #define BYTE_TO_SEND 4 //The bytes are 4 : 2 for the PHOTORESISTOR (MSB + LSB) and 2 for the POTENTIOMETER (MSB + LSB)
+    #define TRANSMIT_SIZE 1+BYTE_TO_SEND+1 //This is the sixe of the packet to send
     
-    uint8_t Data[TRANSMIT_SIZE];
+    uint8_t Data[TRANSMIT_SIZE]; //The packet that will be sent in the main
     
     CY_ISR_PROTO(Custom_ADC_ISR);
     
