@@ -20,6 +20,5 @@ uint8_t flag_PWM_ON = 0;
 
 int32 value_pot = 0;
 int32 value_photo = 0;
-uint8_t DC_PWM = 0;
 
 /* [] END OF FILE */

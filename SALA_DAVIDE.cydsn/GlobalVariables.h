@@ -31,10 +31,9 @@ extern uint8_t ch_received;
 extern uint8_t state;
 extern int32 value_photo;
 extern int32 value_pot;
-extern uint8_t DC_PWM;
 extern uint8_t flag_send;
 extern uint8_t flag_dark;
-extern uint8_t flag_PWM_ON;
+
 
 
 /* [] END OF FILE */

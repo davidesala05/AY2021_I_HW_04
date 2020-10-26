@@ -17,7 +17,7 @@
     #include "cytypes.h"
     #include "GlobalVariables.h"
     
-    void Set_BULB ();
+    void Set_BULB();
     
 #endif
 

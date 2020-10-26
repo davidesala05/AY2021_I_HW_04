@@ -14,7 +14,7 @@
 #include "PWM.h"
 
 void Set_BULB(){
-    PWM_WriteCompare(DC_PWM);
+    PWM_WriteCompare(value_pot);
 }
 
 /* [] END OF FILE */
