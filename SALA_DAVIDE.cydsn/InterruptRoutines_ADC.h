@@ -21,7 +21,7 @@
     #define POT_CHANNEL 1 //Channel of the potentiometer used by the MUX
     
     #define BYTE_TO_SEND 4 //The bytes are 4 : 2 for the PHOTORESISTOR (MSB + LSB) and 2 for the POTENTIOMETER (MSB + LSB)
-    #define TRANSMIT_SIZE 1+BYTE_TO_SEND+1 //This is the sixe of the packet to send
+    #define TRANSMIT_SIZE 1+BYTE_TO_SEND+1 //This is the size of the packet to send
     
     uint8_t Data[TRANSMIT_SIZE]; //The packet that will be sent in the main
     
