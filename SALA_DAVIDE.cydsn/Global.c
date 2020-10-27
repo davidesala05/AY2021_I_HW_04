@@ -12,6 +12,7 @@ uint8_t state = IDLE;
 uint8_t flag_send = 0;
 uint8_t flag_dark = 0;
 uint8_t flag_PWM_ON = 0;
+uint8_t flag_light = 0;
 
 int32 value = 0;
 

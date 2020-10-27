@@ -31,6 +31,7 @@ extern uint8_t state; //Used to switch between different states in the program
 extern int32 value; //Used to save the sampled values
 extern uint8_t flag_send; //Flag used to send the packet after complete the sampling
 extern uint8_t flag_dark; //Flag used to modulate the BULB if the luminosity is below the threshold
+extern uint8_t flag_light;
 
 void Set_BULB(); //Function used to set the BULB intensity via the PWM control
 

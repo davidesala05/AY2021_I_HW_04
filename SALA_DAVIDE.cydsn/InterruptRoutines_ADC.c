@@ -25,11 +25,13 @@ CY_ISR(Custom_ADC_ISR) {
     if ((flag_dark == 0) && (value <= THRESHOLD_LIGHT)){
         state = DARK; //State used in the main to start the PWM
         flag_dark = 1;
+        flag_light = 0;
     }
     /*If the luminosity is above the threshold
-      (the flag_dark is used to enter in this condition only after that the state was DARK)*/
-    else if ((flag_dark) && (value > THRESHOLD_LIGHT)){
+      (the flag_light is used to not enter every cycle)*/
+    if ((flag_light == 0) && (value > THRESHOLD_LIGHT)){
         state = LIGHT; //State used in the main to stop the PWM
+        flag_light = 1;
         flag_dark = 0;
     }
     

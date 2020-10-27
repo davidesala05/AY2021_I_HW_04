@@ -39,6 +39,8 @@ int main(void)
                 PWM_Stop(); //PWM, TIMER and ADC are stopped
                 Timer_Stop();
                 ADC_DelSig_Stop();
+                flag_dark = 0;
+                flag_light = 0;
                 state = IDLE;
                 break;
                 
