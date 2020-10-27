@@ -12,6 +12,7 @@ CY_ISR(Custom_ADC_ISR) {
     Timer_ReadStatusRegister();
     
     AMux_FastSelect(PHOTO_CHANNEL); //Mux set to the PHOTORESISTOR's channel
+    
     value = ADC_DelSig_Read32(); //Sampled value is saved
     
     Normalize_value(); //The value is normalized within the possible range
@@ -20,23 +21,34 @@ CY_ISR(Custom_ADC_ISR) {
     Data[1] = value >> 8;
     Data[2] = value & 0xFF;
     
-    /*If the luminosity is below the threshold
+    /*If the luminosity is below the double threshold
       (the flag_dark is used to not enter every cycle)*/
-    if ((flag_dark == 0) && (value <= THRESHOLD_LIGHT)){
-        state = DARK; //State used in the main to start the PWM
-        flag_dark = 1;
-        flag_light = 0;
+    if ((value <= THRESHOLD_LIGHT) || (value < THRESHOLD_LIGHT_UP)){
+        count_dark++;
+        count_light = 0;
+        if ((count_dark == 10) && (flag_dark == 0)) {
+            state = DARK; //State used in the main to start the PWM
+            flag_dark = 1;
+            flag_light = 0;
+            count_dark = 0;
+        }
     }
     /*If the luminosity is above the threshold
       (the flag_light is used to not enter every cycle)*/
-    if ((flag_light == 0) && (value > THRESHOLD_LIGHT)){
-        state = LIGHT; //State used in the main to stop the PWM
-        flag_light = 1;
-        flag_dark = 0;
+    if ((value >= THRESHOLD_LIGHT) || (value > THRESHOLD_LIGHT_DOWN)){
+        count_light ++;
+        count_dark = 0;
+        if ((count_light == 10) && (flag_light == 0)){
+            state = LIGHT; //State used in the main to stop the PWM
+            flag_light = 1;
+            flag_dark = 0;
+            count_light = 0;
+        }
     }
     
     AMux_FastSelect(POT_CHANNEL); //Mux set to the POTENTIOMETER's channel
-    value = ADC_DelSig_Read32();
+    
+    value = ADC_DelSig_Read32(); //Sampled value is saved
     
     Normalize_value(); //The value is normalized within the possible range
     

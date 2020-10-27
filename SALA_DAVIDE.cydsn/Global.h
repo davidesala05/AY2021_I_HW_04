@@ -25,6 +25,8 @@
 /*The threshold defined below is the one that corresponds more or less
   to the luminosity ridden by the sensor if it is covered by an hand in a closed ambient*/
 #define THRESHOLD_LIGHT 40000
+#define THRESHOLD_LIGHT_UP THRESHOLD_LIGHT+(THRESHOLD_LIGHT*0.1)
+#define THRESHOLD_LIGHT_DOWN THRESHOLD_LIGHT-(THRESHOLD_LIGHT*0.1)
 
 extern uint8_t ch_received; //Where the char received is saved in the UART's isr
 extern uint8_t state; //Used to switch between different states in the program
@@ -32,6 +34,8 @@ extern int32 value; //Used to save the sampled values
 extern uint8_t flag_send; //Flag used to send the packet after complete the sampling
 extern uint8_t flag_dark; //Flag used to modulate the BULB if the luminosity is below the threshold
 extern uint8_t flag_light;
+extern uint8_t count_dark;
+extern uint8_t count_light;
 
 void Set_BULB(); //Function used to set the BULB intensity via the PWM control
 
