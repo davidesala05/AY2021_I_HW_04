@@ -51,21 +51,16 @@ int main(void)
                 PWM_Stop(); //PWM OFF to switch OFF the BULB
                 state = IDLE;
                 break;
-                
-            case ERROR : //In case the character sent is not one of the expected ones
-                UART_PutString("ERROR in the transmission, character is unknown\r\n");
-                UART_Init();
-                state = IDLE;
-                break;
-                
         }
-        if(flag_send){ //If the sampling of both the channels are finished
+        if(flag_send){ //If the sampling of both the channels is done
             UART_PutArray(Data, TRANSMIT_SIZE); //The array with the values is put on the UART
             flag_send = 0;
         }
-        if(flag_dark){ //If the ambient luminosity is under the threshold (BULB ON) the BULB is modulated by the potentiometer
-            Set_BULB(); //Function used to write the compare value of the PWM in order to modulate the intensity of the bulb (defined in the GlobalVariables.c file)
-        }
+        /*If the ambient luminosity is under the threshold (BULB ON)
+          the BULB is modulated by the potentiometer*/
+        if(flag_dark){
+            Set_BULB(); //Function used to write the compare value of the PWM in order to modulate
+        }               // the intensity of the bulb (defined in the GlobalVariables.c file)
     }
 }
 

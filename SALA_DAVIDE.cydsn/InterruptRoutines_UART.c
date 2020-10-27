@@ -18,16 +18,15 @@ CY_ISR(Custom_UART_RX_ISR) {
             
             case 'B':
             case 'b':
-                state = ON; //State used in the main to start all the components and switch ON the LED status of the UART
-                break;
+                state = ON; //State used in the main to start all the components
+                break;      //and switch ON the LED status of the UART
             
             case 'S':
             case 's':
-                state = OFF; //State used in the main to stop all the components, initialize the UART and switch OFF the LED status of the UART
-                break;
+                state = OFF; //State used in the main to stop all the components,
+                break;       //initialize the UART and switch OFF the LED status of the UART
             
-            default: //If the character sent is not one of the expected
-                state = ERROR; //State used in the main to print a message or error
+            default:
                 break;
         }
     } 

@@ -11,7 +11,7 @@
     #define __INTERRUPT_ROUTINES_UART_H
     
     #include "cytypes.h"
-    #include "GlobalVariables.h"
+    #include "Global.h"
     #include "UART.h"
     
     CY_ISR_PROTO(Custom_UART_RX_ISR);
