@@ -35,23 +35,23 @@ int main(void)
                 
             case OFF : //If the character "S" or "s" is write
                 LED_UART_Write(LOW); //The LED of the UART's status is powered OFF
-                UART_Init(); //Initialization of the UART
-                PWM_Stop(); //PWM, TIMER and ADC are stopped
-                Timer_Stop();
-                ADC_DelSig_Stop();
-                flag_dark = 0;
-                flag_light = 0;
+                Reset_ALL(); //Function used to STOP all the components and reset the variables
                 state = IDLE;
                 break;
                 
-            case DARK : //If the luminosity is below the threshold
+            case DARK : //If the luminosity is below the threshold (after debouncing)
                 PWM_Start(); //PWM ON to switch ON the BULB
+                Reset_flags(DARK); //Function used to reset the flags and count for the DARK state
                 state = IDLE;
                 break;
             
-            case LIGHT : //If the luminosity is above the threshold
+            case BRIGHT : //If the luminosity is above the threshold (after debouncing)
                 PWM_Stop(); //PWM OFF to switch OFF the BULB
+                Reset_flags(BRIGHT); //Function used to reset the flags and count for the BRIGHT state
                 state = IDLE;
+                break;
+            
+            default:
                 break;
         }
         if(flag_send){ //If the sampling of both the channels is done

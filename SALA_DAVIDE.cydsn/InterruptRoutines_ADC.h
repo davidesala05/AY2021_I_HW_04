@@ -13,9 +13,7 @@
     
     #include "cytypes.h"
     #include "Global.h"
-    #include "Timer.h"
-    #include "ADC_DelSig.h"
-    #include "AMux.h"
+    #include "project.h"
     
     #define PHOTO_CHANNEL 0 //Channel of the photoresistor used by the MUX
     #define POT_CHANNEL 1 //Channel of the potentiometer used by the MUX

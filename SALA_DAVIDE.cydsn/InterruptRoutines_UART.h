@@ -12,7 +12,7 @@
     
     #include "cytypes.h"
     #include "Global.h"
-    #include "UART.h"
+    #include "project.h"
     
     CY_ISR_PROTO(Custom_UART_RX_ISR);
     

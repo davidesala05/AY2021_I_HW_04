@@ -1,20 +1,19 @@
 /* ========================================
  *
- * Here all the global variables, states and masks are declared
- * Even the function used to set the BULB intensity
- * and the one used to normalize the value are declared
+ * Here all the global variables, states and masks are declared.
+ * Even some functions used in the main are declared.
  * 
  * ========================================
 */
 
 #include "cytypes.h"
-#include "PWM.h"
+#include "project.h"
 
 #define IDLE 0 //State used to do nothing
 #define ON 1 //If the system is power ON
 #define OFF 2 //If the system is power OFF
 #define DARK 3 //If the luminosity is below the threshold
-#define LIGHT 4 //If the luminosity is above the threshold
+#define BRIGHT 4 //If the luminosity is above the threshold
 
 #define HIGH 1
 #define LOW 0
@@ -23,22 +22,25 @@
 #define TAIL 0xC0
 
 /*The threshold defined below is the one that corresponds more or less
-  to the luminosity ridden by the sensor if it is covered by an hand in a closed ambient*/
-#define THRESHOLD_LIGHT 40000
-#define THRESHOLD_LIGHT_UP THRESHOLD_LIGHT+(THRESHOLD_LIGHT*0.1)
-#define THRESHOLD_LIGHT_DOWN THRESHOLD_LIGHT-(THRESHOLD_LIGHT*0.1)
+  to the luminosity ridden by the sensor in a closed ambient without light entering by the windows*/
+#define THRESHOLD 40000
+
 
 extern uint8_t ch_received; //Where the char received is saved in the UART's isr
 extern uint8_t state; //Used to switch between different states in the program
 extern int32 value; //Used to save the sampled values
-extern uint8_t flag_send; //Flag used to send the packet after complete the sampling
-extern uint8_t flag_dark; //Flag used to modulate the BULB if the luminosity is below the threshold
-extern uint8_t flag_light;
-extern uint8_t count_dark;
-extern uint8_t count_light;
+extern uint8_t flag_send; //Flag used to send the packet after the sampling is completed
+extern uint8_t flag_dark; //Flag used to modulate the BULB (ONLY ONE TIME PER STATUS CHANGE) if the luminosity is below the threshold
+extern uint8_t flag_bright; //Flag used to modulate the BULB (ONLY ONE TIME PER STATUS CHANGE) if the luminosity is above the threshold
+extern uint8_t count_dark; //Count variables used to implement a debouncer for the DARK state
+extern uint8_t count_bright; //Count variables used to implement a debouncer for the BRIGHT state
 
 void Set_BULB(); //Function used to set the BULB intensity via the PWM control
 
 void Normalize_value(); //Function used to normalize the value within the usable range
+
+void Reset_ALL (); //Function used to STOP all the components and reset the variables
+
+void Reset_flags(uint8_t state); //Function used to reset the flags and the count variable according to the state
 
 /* [] END OF FILE */
