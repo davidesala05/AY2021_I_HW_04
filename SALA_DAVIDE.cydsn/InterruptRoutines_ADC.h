@@ -19,10 +19,10 @@
     #define POT_CHANNEL 1 //Channel of the potentiometer used by the MUX
     
     /*If REPETISTIONS is greater than 1, the values sampled by both the sensors are accumulated
-      for REPETITIONS-times and then mediated, only after this passage the new mean values are used
+      for REPETITIONS-times and then averaged, only after this passage the new mean values are used
       for data transmission and for all the other purposes.
       Thanks to that we are able to obtain and use a more stable measure and a signal that is denoised.
-      In this condition below the values are sampled for 10 times and after mediated*/
+      In this condition below the values are sampled for 10 times and after the mean is done*/
     #define REPETITIONS 10
     
     /*The period of the TIMER is changed according to the value of the REPETITIONS,
