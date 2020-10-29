@@ -18,8 +18,8 @@ uint8_t count_bright = 0;
 uint8_t count_sample = 0;
 
 int32 value = 0;
-int32 value_photo = 0;
-int32 value_pot = 0;
+uint32_t value_photo = 0;
+uint32_t value_pot = 0;
 
 void Set_BULB(){
     PWM_WriteCompare(value); /*value sampled by the POTENTIOMETER is used
