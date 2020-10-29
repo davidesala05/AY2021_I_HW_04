@@ -25,15 +25,17 @@
   to the luminosity ridden by the sensor in a closed ambient without light entering by the windows*/
 #define THRESHOLD 40000
 
-
 extern uint8_t ch_received; //Where the char received is saved in the UART's isr
 extern uint8_t state; //Used to switch between different states in the program
 extern int32 value; //Used to save the sampled values
+extern int32 value_photo; //Used to accumulate the values of photoresistor
+extern int32 value_pot; //Used to accumulate the values of potentiometer
 extern uint8_t flag_send; //Flag used to send the packet after the sampling is completed
 extern uint8_t flag_dark; //Flag used to modulate the BULB (ONLY ONE TIME PER STATUS CHANGE) if the luminosity is below the threshold
 extern uint8_t flag_bright; //Flag used to modulate the BULB (ONLY ONE TIME PER STATUS CHANGE) if the luminosity is above the threshold
 extern uint8_t count_dark; //Count variables used to implement a debouncer for the DARK state
 extern uint8_t count_bright; //Count variables used to implement a debouncer for the BRIGHT state
+extern uint8_t count_sample; //Used to count the number of acquisition, compared then to REPETITIONS
 
 void Set_BULB(); //Function used to set the BULB intensity via the PWM control
 

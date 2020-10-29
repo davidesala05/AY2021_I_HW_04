@@ -14,7 +14,7 @@ int main(void)
     CyGlobalIntEnable; /* Enable global interrupts. */
     
     UART_Start();
-  
+    
     isr_ADC_StartEx(Custom_ADC_ISR);
     isr_UART_StartEx(Custom_UART_RX_ISR);
     
@@ -29,7 +29,8 @@ int main(void)
             case ON : //If the character "B" or "b" is write
                 LED_UART_Write(HIGH); //LED of the UART's status is powered ON
                 Timer_Start(); //Timer is let started to start the sampling
-                ADC_DelSig_Start(); //The ADC is started
+                Timer_WritePeriod(PERIOD_TIMER); //The custom period must reset every time the TIMER is started (otherwise the TimerStart() function set the configuration pannel parameters)
+                ADC_DelSig_Start(); //ADC is let started
                 state = IDLE;
                 break;
                 

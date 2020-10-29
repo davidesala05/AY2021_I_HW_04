@@ -7,6 +7,7 @@
 
 #include "Global.h"
 
+/*All the variables are initialized*/
 uint8_t ch_received = 0;
 uint8_t state = IDLE;
 uint8_t flag_send = 0;
@@ -14,8 +15,11 @@ uint8_t flag_dark = 0;
 uint8_t flag_bright = 0;
 uint8_t count_dark = 0;
 uint8_t count_bright = 0;
+uint8_t count_sample = 0;
 
 int32 value = 0;
+int32 value_photo = 0;
+int32 value_pot = 0;
 
 void Set_BULB(){
     PWM_WriteCompare(value); /*value sampled by the POTENTIOMETER is used
@@ -32,14 +36,16 @@ void Normalize_value(){ //Function used to normalized the value within the possi
 }
 
 void Reset_ALL (){
-    UART_Init(); //Initialization of the UART
-    PWM_Stop(); //PWM, TIMER and ADC are stopped
-    Timer_Stop();
-    ADC_DelSig_Stop();
+    PWM_Stop(); //PWM stopped beacuse the BULB is OFF
+    ADC_DelSig_Stop(); //ADC stopped to not sampling if the system is switched OFF
+    Timer_Stop(); //Timer stopped
+    //Below all the flags and variables are reset to 0
     flag_dark = 0;
     flag_bright = 0;
     count_dark = 0;
     count_bright = 0;
+    value_photo = 0;
+    value_pot = 0;
 }
 
 void Reset_flags(uint8_t state){
