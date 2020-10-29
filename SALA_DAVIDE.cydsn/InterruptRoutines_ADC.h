@@ -1,7 +1,7 @@
 /* ========================================
  *
  * This is the header file of the interrupt of the TIMER
- * The TIMER isr is called every 100 milliseconds
+ * The TIMER isr is called every PERIOD_TIMER
  * This isr is used to sample both the channels sequentially
  * 
  * ========================================
