@@ -16,14 +16,14 @@
 CY_ISR(Custom_ADC_ISR) {
     
     Timer_ReadStatusRegister();
-     /*Variable to count the acquisition id incremented*/
+     /*Variable to count the acquisition is incremented*/
     count_sample++;
     
     /*Acquisition of the PHOTORESISTOR*/
     AMux_FastSelect(PHOTO_CHANNEL); //Channel is switched
     value = ADC_DelSig_Read32();
     Normalize_value(); //Value is normalized within the admissible range
-    value_photo += value; //New value is accumulated to perform after the mean
+    value_photo += value; //New value is accumulated to perform after the average
     
     /*Acquisition of the POTENTIOMETER*/
     AMux_FastSelect(POT_CHANNEL);

@@ -23,7 +23,7 @@
       for data transmission and for all the other purposes.
       Thanks to that we are able to obtain and use a more stable measure and a signal that is denoised.
       In this condition below the values are sampled for 10 times and after the mean is done*/
-    #define REPETITIONS 10
+    #define REPETITIONS 100
     
     /*The period of the TIMER is changed according to the value of the REPETITIONS,
       this allows to have always the same frequency of acquisition and data transmission.

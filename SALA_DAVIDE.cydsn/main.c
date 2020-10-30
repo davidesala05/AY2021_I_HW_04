@@ -29,7 +29,8 @@ int main(void)
             case ON : //If the character "B" or "b" is write
                 LED_UART_Write(HIGH); //LED of the UART's status is powered ON
                 Timer_Start(); //Timer is let started to start the sampling
-                Timer_WritePeriod(PERIOD_TIMER); //The custom period must reset every time the TIMER is started (otherwise the TimerStart() function set the configuration pannel parameters)
+                Timer_WritePeriod(PERIOD_TIMER); //The custom period must reset every time the TIMER is started
+                                                 //(otherwise the TimerStart() function set the parameters of the configuration pannel)
                 ADC_DelSig_Start(); //ADC is let started
                 state = IDLE;
                 break;
@@ -52,7 +53,7 @@ int main(void)
                 state = IDLE;
                 break;
             
-            default:
+            default :
                 break;
         }
         if(flag_send){ //If the sampling of both the channels is done
@@ -63,7 +64,7 @@ int main(void)
           the BULB is modulated by the potentiometer*/
         if(flag_dark){
             Set_BULB(); //Function used to write the compare value of the PWM in order to modulate
-        }               // the intensity of the bulb (defined in the GlobalVariables.c file)
+        }               // the intensity of the bulb (defined in the Global.c file)
     }
 }
 
