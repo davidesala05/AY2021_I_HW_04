@@ -56,7 +56,8 @@ int main(void)
             default :
                 break;
         }
-        if(flag_send){ //If the sampling of both the channels is done
+        /*If the sampling of both the channels is done*/
+        if(flag_send){
             UART_PutArray(Data, TRANSMIT_SIZE); //The array with the values is put on the UART
             flag_send = 0;
         }
